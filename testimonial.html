@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="utf-8">
+    <title>ሜጄድ ቡና ቤት · ምስክርነት · ቤልቪል</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ሜጄድ ቡና ቤት ምስክርነት ቤልቪል ኬፕ ታውን" name="description">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif; background: #f7f2eb; }
+        .menu-item-am {
+            background: #fcf9f6;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #efe4d9;
+            transition: all 0.15s;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .menu-item-am:hover { background: #f8f0e8; border-color: #dac6b2; }
+        .menu-item-am .item-info { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .menu-item-am .item-name { font-size: 1.3rem; font-weight: 600; color: #2d241a; }
+        .menu-item-am .item-name i { color: #b47b4c; width: 1.8rem; text-align: center; }
+        .menu-item-am .item-price { background: #e6d8cb; padding: 0.2rem 1.2rem; border-radius: 40px; font-weight: 600; color: #3d2c1b; font-size: 1rem; white-space: nowrap; }
+        .qty-control { display: flex; align-items: center; gap: 8px; }
+        .qty-control button { background: #e6d8cb; border: none; border-radius: 50%; width: 32px; height: 32px; font-weight: 700; font-size: 1.2rem; cursor: pointer; transition: 0.15s; }
+        .qty-control button:hover { background: #dac6b2; }
+        .qty-control .qty-display { font-weight: 600; font-size: 1.1rem; min-width: 30px; text-align: center; }
+
+        /* Order Summary */
+        .order-summary {
+            background: #2c1f14; color: #f5ede6; border-radius: 30px; padding: 1.8rem 2rem;
+            position: sticky; top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .order-summary h4 { color: #f5ede6; border-bottom: 2px solid #b47b4c; padding-bottom: 0.8rem; }
+        .order-summary .cart-item { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.95rem; }
+        .order-summary .cart-total { font-size: 1.3rem; font-weight: 700; border-top: 2px solid #b47b4c; padding-top: 0.8rem; margin-top: 0.5rem; }
+        .order-summary .empty-cart { color: #a18773; font-style: italic; }
+        .btn-checkout-wa {
+            background: #25D366; color: white; border: none; border-radius: 60px;
+            padding: 0.8rem 1.5rem; font-weight: 700; font-size: 1.1rem;
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; transition: 0.15s; border: 1px solid #1fa854;
+        }
+        .btn-checkout-wa:hover { background: #1fa854; transform: scale(1.02); color: white; }
+        .location-badge {
+            background: #b47b4c20; border: 1px solid #b47b4c; border-radius: 60px;
+            padding: 0.3rem 1.5rem; display: inline-block; color: #3d2c1b;
+        }
+        .testimonial-item {
+            background: #fcf9f6; border-radius: 20px; padding: 2rem; margin: 0.5rem;
+            border: 1px solid #efe4d9;
+        }
+        .testimonial-item img {
+            width: 70px; height: 70px; border-radius: 50%; object-fit: cover;
+            border: 3px solid #b47b4c;
+        }
+        .testimonial-item .client-name {
+            color: #2d241a; font-weight: 700;
+        }
+        .testimonial-item .client-role {
+            color: #b47b4c; font-size: 0.9rem;
+        }
+        .testimonial-item .client-text {
+            color: #5a4a3a; font-style: italic;
+        }
+        .service-icon { color: #b47b4c; margin-right: 10px; }
+        @media (max-width: 768px) {
+            .menu-item-am { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+            .order-summary { position: relative; top: 0; margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="container-fluid p-0 nav-bar">
+        <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+                <h1 class="m-0 display-4 text-uppercase text-white"><i class="fas fa-mug-hot mr-2"></i>ሜጄድ</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto p-4">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="service.html" class="nav-item nav-link">Service</a>
+                    <a href="menu.html" class="nav-item nav-link">Menu</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu text-capitalize">
+                            <a href="reservation.html" class="dropdown-item">Reservation</a>
+                            <a href="testimonial.html" class="dropdown-item active">Testimonial</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 350px">
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">ምስክርነት</h1>
+            <div class="d-inline-flex mb-lg-5">
+                <p class="m-0 text-white"><a class="text-white" href="#">Home</a></p>
+                <p class="m-0 text-white px-2">/</p>
+                <p class="m-0 text-white">ምስክርነት</p>
+            </div>
+            <div class="location-badge mt-2">
+                <i class="fas fa-map-marker-alt text-primary"></i> ቤልቪል · ኬፕ ታውን · ደቡብ አፍሪካ
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial + Menu + Order Section -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Left: Testimonials -->
+                <div class="col-lg-7">
+                    <div class="section-title">
+                        <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">ምስክርነት</h4>
+                        <h1 class="display-4">ደንበኞቻችን ይላሉ</h1>
+                        <p class="text-muted">በቤልቪል ከሚገኙ ደንበኞቻችን የተሰጡ አስተያየቶች</p>
+                    </div>
+                    
+                    <!-- Testimonial Carousel (Owl) -->
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="testimonial-item">
+                            <div class="d-flex align-items-center mb-3">
+                                <img class="img-fluid" src="img/testimonial-1.jpg" alt="Client">
+                                <div class="ml-3">
+                                    <h4 class="client-name">መለሰ አብርሃም</h4>
+                                    <i class="client-role">ቤልቪል ነዋሪ</i>
+                                </div>
+                            </div>
+                            <p class="client-text m-0">"ሜጄድ ቡና ቤት በቤልቪል ምርጥ ቡና ያቀርባል! አገልግሎቱ ፈጣን እና ውድ ነው። በእርግጠኝነት እመክራለሁ።"</p>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="d-flex align-items-center mb-3">
+                                <img class="img-fluid" src="img/testimonial-2.jpg" alt="Client">
+                                <div class="ml-3">
+                                    <h4 class="client-name">ዳንኤል ተስፋዬ</h4>
+                                    <i class="client-role">ኬፕ ታውን ተማሪ</i>
+                                </div>
+                            </div>
+                            <p class="client-text m-0">"የሜጄድ አምባሻ እና ቡና በጣም ጣፋጭ ነው! ዋጋውም ተመጣጣኝ ነው። በየሳምንቱ እመጣለሁ።"</p>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="d-flex align-items-center mb-3">
+                                <img class="img-fluid" src="img/testimonial-3.jpg" alt="Client">
+                                <div class="ml-3">
+                                    <h4 class="client-name">ሳራ ኃይሉ</h4>
+                                    <i class="client-role">ነጋዴ</i>
+                                </div>
+                            </div>
+                            <p class="client-text m-0">"በቤልቪል ውስጥ ምርጥ የቡና ቤት! አገልግሎቱ ሞቅ ያለ እና ተግባቢ ነው። ለሁሉም እመክራለሁ።"</p>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="d-flex align-items-center mb-3">
+                                <img class="img-fluid" src="img/testimonial-4.jpg" alt="Client">
+                                <div class="ml-3">
+                                    <h4 class="client-name">ሚካኤል ገ/እግዚ</h4>
+                                    <i class="client-role">አስተማሪ</i>
+                                </div>
+                            </div>
+                            <p class="client-text m-0">"ሜጄድ ቡና ቤት በቤልቪል የሚገኝ እውነተኛ የኢትዮጵያ ቡና ነው! በጣም እወዳለሁ።"</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick stats -->
+                    <div class="row mt-4 text-center">
+                        <div class="col-4">
+                            <div class="p-3" style="background: #f4ede7; border-radius: 16px;">
+                                <h3 class="text-primary">⭐ 4.9</h3>
+                                <p class="small mb-0">ከ100+ አስተያየቶች</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-3" style="background: #f4ede7; border-radius: 16px;">
+                                <h3 class="text-primary">🏆</h3>
+                                <p class="small mb-0">ምርጥ ቡና 2025</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-3" style="background: #f4ede7; border-radius: 16px;">
+                                <h3 class="text-primary">☕</h3>
+                                <p class="small mb-0">500+ ደንበኞች</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Menu + Order Summary -->
+                <div class="col-lg-5">
+                    <div class="section-title-am text-center mb-3">
+                        <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">ሜጄድ ቡና</h4>
+                        <h2 class="display-5">የእኛ ምናሌ</h2>
+                        <p class="text-muted"><i class="fas fa-coins text-primary"></i> ዋጋዎች በራንድ (R)</p>
+                    </div>
+
+                    <!-- Menu Items -->
+                    <div id="menuContainer">
+                        <div class="menu-item-am" data-item="ቡና" data-price="20">
+                            <div class="item-info">
+                                <span class="item-name"><i class="fas fa-seedling"></i> ቡና</span>
+                                <span class="item-price"><i class="fas fa-coins"></i> R20</span>
+                            </div>
+                            <div class="qty-control">
+                                <button class="qty-minus">−</button>
+                                <span class="qty-display">0</span>
+                                <button class="qty-plus">+</button>
+                            </div>
+                        </div>
+                        <div class="menu-item-am" data-item="ሻይ" data-price="20">
+                            <div class="item-info">
+                                <span class="item-name"><i class="fas fa-leaf"></i> ሻይ</span>
+                                <span class="item-price"><i class="fas fa-coins"></i> R20</span>
+                            </div>
+                            <div class="qty-control">
+                                <button class="qty-minus">−</button>
+                                <span class="qty-display">0</span>
+                                <button class="qty-plus">+</button>
+                            </div>
+                        </div>
+                        <div class="menu-item-am" data-item="ሚኪያቶ" data-price="20">
+                            <div class="item-info">
+                                <span class="item-name"><i class="fas fa-blender"></i> ሚኪያቶ</span>
+                                <span class="item-price"><i class="fas fa-coins"></i> R20</span>
+                            </div>
+                            <div class="qty-control">
+                                <button class="qty-minus">−</button>
+                                <span class="qty-display">0</span>
+                                <button class="qty-plus">+</button>
+                            </div>
+                        </div>
+                        <div class="menu-item-am" data-item="አስቡሳት" data-price="10">
+                            <div class="item-info">
+                                <span class="item-name"><i class="fas fa-mug-saucer"></i> አስቡሳት</span>
+                                <span class="item-price"><i class="fas fa-coins"></i> R10</span>
+                            </div>
+                            <div class="qty-control">
+                                <button class="qty-minus">−</button>
+                                <span class="qty-display">0</span>
+                                <button class="qty-plus">+</button>
+                            </div>
+                        </div>
+                        <div class="menu-item-am" data-item="ካፑቺኖ" data-price="20">
+                            <div class="item-info">
+                                <span class="item-name"><i class="fas fa-mug-hot"></i> ካፑቺኖ</span>
+                                <span class="item-price"><i class="fas fa-coins"></i> R20</span>
+                            </div>
+                            <div class="qty-control">
+                                <button class="qty-minus">−</button>
+                                <span class="qty-display">0</span>
+                                <button class="qty-plus">+</button>
+                            </div>
+                        </div>
+                        <div class="menu-item-am" data-item="አምባሻ" data-price="10">
+                            <div class="item-info">
+                                <span class="item-name"><i class="fas fa-bread-slice"></i> አምባሻ</span>
+                                <span class="item-price"><i class="fas fa-coins"></i> R10</span>
+                            </div>
+                            <div class="qty-control">
+                                <button class="qty-minus">−</button>
+                                <span class="qty-display">0</span>
+                                <button class="qty-plus">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="order-summary mt-4">
+                        <h4><i class="fas fa-shopping-cart"></i> የትእዛዝ ማጠቃለያ</h4>
+                        <div id="cartItems">
+                            <p class="empty-cart">ምንም እቃ አልተመረጠም</p>
+                        </div>
+                        <div class="cart-total d-flex justify-content-between">
+                            <span>ጠቅላላ ዋጋ:</span>
+                            <span id="totalAmount">R0.00</span>
+                        </div>
+                        <hr style="border-color: #b47b4c40;">
+                        <button id="checkoutWhatsAppBtn" class="btn-checkout-wa">
+                            <i class="fab fa-whatsapp fa-lg"></i> በዋትሳፕ ያስተያዩ
+                        </button>
+                        <p class="text-center text-muted small mt-2" style="color: #a18773 !important;">
+                            <i class="fas fa-map-marker-alt"></i> ቤልቪል · ኬፕ ታውን · ደቡብ አፍሪካ
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top" style="background: #1a1410;">
+        <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">አድራሻ</h4>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>ቤልቪል, ኬፕ ታውን, ደቡብ አፍሪካ</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+27 9XX XXX XXX</p>
+                <p class="m-0"><i class="fa fa-envelope mr-2"></i>mejied@coffee.za</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">ይከተሉን</h4>
+                <p>በማህበራዊ ሚዲያ ይከተሉን</p>
+                <div class="d-flex justify-content-start">
+                    <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-lg btn-outline-light btn-lg-square" href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">የስራ ሰዓት</h4>
+                <div>
+                    <h6 class="text-white text-uppercase">ሰኞ - አርብ</h6>
+                    <p>8:00 ጠዋት - 8:00 ማታ</p>
+                    <h6 class="text-white text-uppercase">ቅዳሜ - እሑድ</h6>
+                    <p>2:00 ማታ - 8:00 ማታ</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">ዜና</h4>
+                <p>አዳዲስ ቅናሾችን ለማወቅ ይመዝገቡ</p>
+                <div class="w-100">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="ኢሜይልዎ">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary font-weight-bold px-3">ተመዝገብ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+            <p class="mb-2 text-white">Copyright &copy; <a class="font-weight-bold" href="#">ሜጄድ ቡና ቤት</a> · ቤልቪል ኬፕ ታውን</p>
+            <p class="m-0 text-white">የተሰራው በ <a class="font-weight-bold" href="#">Mejied's Team</a> ነው</p>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Cart + WhatsApp Script -->
+    <script>
+        (function() {
+            // ⚠️ CHANGE THIS to Mejied's actual WhatsApp number (South Africa format: 27 + number)
+            const PHONE_NUMBER = '277912345678';
+            const BASE_URL = 'https://wa.me/';
+
+            let cart = {};
+            const cartItemsEl = document.getElementById('cartItems');
+            const totalEl = document.getElementById('totalAmount');
+
+            function formatCurrency(amount) {
+                return 'R' + amount.toFixed(2);
+            }
+
+            function renderCart() {
+                const items = Object.keys(cart);
+                if (items.length === 0) {
+                    cartItemsEl.innerHTML = '<p class="empty-cart">ምንም እቃ አልተመረጠም</p>';
+                    totalEl.textContent = 'R0.00';
+                    return;
+                }
+                let html = '';
+                let total = 0;
+                items.forEach(name => {
+                    const entry = cart[name];
+                    const subtotal = entry.price * entry.qty;
+                    total += subtotal;
+                    html += `<div class="cart-item">
+                                <span>${name} × ${entry.qty}</span>
+                                <span>${formatCurrency(subtotal)}</span>
+                            </div>`;
+                });
+                cartItemsEl.innerHTML = html;
+                totalEl.textContent = formatCurrency(total);
+            }
+
+            function updateQty(itemName, delta) {
+                const menuItem = document.querySelector(`.menu-item-am[data-item="${itemName}"]`);
+                if (!menuItem) return;
+                const price = parseInt(menuItem.dataset.price, 10);
+                if (!cart[itemName]) cart[itemName] = { price, qty: 0 };
+                const newQty = cart[itemName].qty + delta;
+                if (newQty <= 0) {
+                    delete cart[itemName];
+                } else {
+                    cart[itemName].qty = newQty;
+                }
+                const display = menuItem.querySelector('.qty-display');
+                if (display) display.textContent = cart[itemName] ? cart[itemName].qty : 0;
+                renderCart();
+            }
+
+            document.querySelectorAll('.menu-item-am').forEach(el => {
+                const itemName = el.dataset.item;
+                el.querySelector('.qty-plus').addEventListener('click', e => { e.stopPropagation(); updateQty(itemName, 1); });
+                el.querySelector('.qty-minus').addEventListener('click', e => { e.stopPropagation(); updateQty(itemName, -1); });
+            });
+
+            function getOrderMessage() {
+                const items = Object.keys(cart);
+                if (items.length === 0) return null;
+                let lines = [];
+                let total = 0;
+                items.forEach(name => {
+                    const entry = cart[name];
+                    const subtotal = entry.price * entry.qty;
+                    total += subtotal;
+                    lines.push(`${name} × ${entry.qty} = R${subtotal.toFixed(2)}`);
+                });
+                lines.push(`━━━━━━━━━━━━━━━`);
+                lines.push(`ጠቅላላ ዋጋ: R${total.toFixed(2)}`);
+                lines.push(`📍 ቤልቪል · ኬፕ ታውን · ደቡብ አፍሪካ`);
+                lines.push(`🙏 እናመሰግናለን!`);
+                return lines.join('\n');
+            }
+
+            document.getElementById('checkoutWhatsAppBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const items = Object.keys(cart);
+                if (items.length === 0) {
+                    alert('እባክዎ ቢያንስ አንድ እቃ ይምረጡ!');
+                    return;
+                }
+                const orderMsg = getOrderMessage();
+                if (!orderMsg) return;
+                const fullMsg = `ሰላም ሜጄድ! እኔ ማዘዝ እፈልጋለሁ።\n\n${orderMsg}`;
+                window.open(`${BASE_URL}${PHONE_NUMBER}?text=${encodeURIComponent(fullMsg)}`, '_blank');
+            });
+
+            console.log('📱 የዋትሳፕ ቁጥር ለመቀየር PHONE_NUMBER ን ይቀይሩ (ምሳሌ: 277912345678)');
+            console.log('📍 ቤልቪል · ኬፕ ታውን · ደቡብ አፍሪካ');
+        })();
+    </script>
+</body>
+</html>
